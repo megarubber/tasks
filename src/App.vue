@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<h1>Tarefas</h1>
+		<h1>Tasks</h1>
 	</div>
 </template>
 
@@ -12,8 +12,8 @@ export default {
 
 <style>
 	body {
-		font-family: 'Lato', sans-serif;
-		background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+		font-family: 'Fredoka One', cursive;
+		background: linear-gradient(to right, rgb(56, 184, 17), rgb(58, 115, 82));
 		color: #FFF;
 	}
 
