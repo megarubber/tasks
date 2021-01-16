@@ -1,13 +1,32 @@
 <template>
     <div class="input-bar">
-        <input type="text">
-        <button>+</button>
+        <input type="text" @input="getMessage">
+        <button @click="includeMessage">+</button>
     </div>    
 </template>
 
 <script>
+
+import eventBus from '@/eventBus'
 export default {
-    
+    props: {
+        text: Array
+    },
+    data() {
+        return {
+            message: '',
+            myTasks: []
+        }
+    },
+    methods: {
+        getMessage(event) {
+            this.message = event.target.value;
+        },
+        includeMessage() {
+            this.myTasks.push(this.message);
+            eventBus.setMessage(this.myTasks[this.myTasks.length - 1]);
+        }
+    }
 }
 </script>
 
