@@ -2,8 +2,12 @@
 	<div id="app">
 		<h1>Tasks</h1>
 		<Bar />
-		<InputBar />
-		<Task />
+		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
+		<span class="blocks">
+			<span v-for="i in repeatTime" :key="i">
+				<Task :taskMessage="logs[i-1]"/>
+			</span>
+		</span>
 	</div>
 </template>
 
@@ -13,7 +17,13 @@ import InputBar from '@/components/InputBar.vue'
 import Task from '@/components/Task.vue'
 
 export default {
-	components: { Bar, InputBar, Task }
+	components: { Bar, InputBar, Task },
+	data() {
+		return {
+			repeatTime: 0,
+			logs: [],
+		}
+	},
 }
 </script>
 
@@ -31,12 +41,21 @@ export default {
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
+		width: 100%;
 	}
 
 	#app h1 {
 		margin-bottom: 5px;
 		font-weight: 300;
 		font-size: 3rem;
+	}
+
+	.blocks {
+		display: flex !important;
+		flex-direction: row !important;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 
 </style>

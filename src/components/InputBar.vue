@@ -24,7 +24,8 @@ export default {
         },
         includeMessage() {
             this.myTasks.push(this.message);
-            eventBus.setMessage(this.myTasks[this.myTasks.length - 1]);
+            this.$emit('setMessage', this.myTasks[this.myTasks.length - 1]);
+            this.$emit("sizeMyTasks", this.myTasks.length);
         }
     }
 }

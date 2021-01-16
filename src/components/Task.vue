@@ -1,5 +1,5 @@
 <template>
-    <div class="task">
+    <div class="task" @click="myColor = 'aqua'" :style="[{backgroundColor: myColor}]">
         {{ taskMessage }}
     </div>
 </template>
@@ -8,32 +8,25 @@
 
 import eventBus from '@/eventBus'
 export default {
-    /*
     props: {
         taskMessage: String
     },
-    */
     data() {
         return {
-            taskMessage: ''
+            myColor: 'red',
         }
-    },
-    created() {
-        eventBus.onMessage(text => {
-            this.taskMessage = text
-        });
     }
 }
 </script>
 
 <style scoped>
     .task {
-        padding: 50px;
         border-radius: 25px;
         margin: 50px;
-        width: 350px;
-        height: 200px;
+        width: 300px;
+        height: 150px;
         background-color: red;
-        font-size: 25px;
+        font-size: 20px;
+        padding: 25px;
     }
 </style>
