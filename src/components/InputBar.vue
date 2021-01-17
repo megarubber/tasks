@@ -19,7 +19,7 @@ export default {
         }
     },
     methods: {
-        getMessage(event) {
+        getMessage() {
             this.message = event.target.value;
         },
         includeMessage() {
@@ -32,9 +32,11 @@ export default {
 </script>
 
 <style scoped>
+    .input-bar {
+        margin-top: 100px;
+    }
     input {
         border-radius: 25px;
-        margin-top: 25px;
         height: 50px;
         width: 350px;
         font-size: 150%;
@@ -42,7 +44,7 @@ export default {
     }
     button {
         margin-left: 20px;
-        height: 50%;
+        height: 100%;
         font-weight: bold;
         font-size: 25px;
         background-color: aqua;

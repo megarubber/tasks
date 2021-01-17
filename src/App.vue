@@ -1,11 +1,11 @@
 <template>
 	<div id="app">
 		<h1>Tasks</h1>
-		<Bar />
+		<Bar :percentageWidth="repeatTime" :difference="counter"/>
 		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
 		<span class="blocks">
 			<span v-for="i in repeatTime" :key="i">
-				<Task @whenDestroy="option = $event" :taskMessage="logs[i-1]"/>
+				<Task @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
 			</span>
 		</span>
 	</div>
@@ -22,14 +22,12 @@ export default {
 		return {
 			repeatTime: 0,
 			logs: [],
-			test: '',
-			option: false,
-			division: 0
+			counter: 0
 		}
 	},
 	methods: {
-		count() {
-			
+		test() {
+			console.log(this.counter);
 		}
 	}
 }

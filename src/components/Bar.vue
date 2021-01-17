@@ -1,12 +1,28 @@
 <template>
     <div class="bar">
-        <div class="progress-bar" :style="[{width: }]"></div>
+        <div class="progress-bar" :style="[{width: count() + '%'}]"></div>
+        <h1>{{count()}}%</h1>
     </div>
 </template>
 
 <script>
+
+import eventBus from '@/eventBus'
 export default {
-    
+    props: {
+        percentageWidth: Number,
+        difference: Number     
+    },
+    methods: {
+        count() {
+            // if(this.percentageWidth != 0) return 100/(this.percentageWidth - this.difference);
+            if(this.percentageWidth != 0) {
+                let division = 100/this.percentageWidth;
+                return division * this.difference;
+            }
+            else return 0;
+        },
+    },
 }
 </script>
 
@@ -21,5 +37,8 @@ export default {
         background-color: aqua;
         height: 100%;
         border-radius: 15px;
+    }
+    h1 {
+        text-align: center;
     }
 </style>

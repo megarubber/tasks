@@ -1,7 +1,7 @@
 <template>
-    <div class="task" @click="myColor = 'aqua'" :style="[{backgroundColor: myColor}]">
+    <div class="task" @click="testColor()" :style="[{backgroundColor: myColor}]">
         {{ taskMessage }}
-        <span @click="destroyTask()">X</span>
+        <span>X</span>
     </div>
 </template>
 
@@ -11,7 +11,6 @@ import eventBus from '@/eventBus'
 export default {
     props: {
         taskMessage: String,
-        option: Boolean
     },
     data() {
         return {
@@ -19,9 +18,19 @@ export default {
         }
     },
     methods: {
-        destroyTask() {
-            this.$emit('whenDestroy', this.option);
-        }
+        testColor() {
+            //this.myColor = this.myColor == 'red' ? 'aqua' : 'red';
+            let verify = 0;
+            if(this.myColor == 'red') {
+                this.myColor = 'aqua';
+                verify++;
+            }
+            else {
+                this.myColor = 'red';
+                verify--;
+            }
+            this.$emit('sendValue', verify);
+        },
     }
 }
 </script>
