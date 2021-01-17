@@ -5,7 +5,7 @@
 		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
 		<span class="blocks">
 			<span v-for="i in repeatTime" :key="i">
-				<Task :taskMessage="logs[i-1]"/>
+				<Task @whenDestroy="option = $event" :taskMessage="logs[i-1]"/>
 			</span>
 		</span>
 	</div>
@@ -22,8 +22,16 @@ export default {
 		return {
 			repeatTime: 0,
 			logs: [],
+			test: '',
+			option: false,
+			division: 0
 		}
 	},
+	methods: {
+		count() {
+			
+		}
+	}
 }
 </script>
 

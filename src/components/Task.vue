@@ -1,6 +1,7 @@
 <template>
     <div class="task" @click="myColor = 'aqua'" :style="[{backgroundColor: myColor}]">
         {{ taskMessage }}
+        <span @click="destroyTask()">X</span>
     </div>
 </template>
 
@@ -9,11 +10,17 @@
 import eventBus from '@/eventBus'
 export default {
     props: {
-        taskMessage: String
+        taskMessage: String,
+        option: Boolean
     },
     data() {
         return {
             myColor: 'red',
+        }
+    },
+    methods: {
+        destroyTask() {
+            this.$emit('whenDestroy', this.option);
         }
     }
 }
@@ -28,5 +35,8 @@ export default {
         background-color: red;
         font-size: 20px;
         padding: 25px;
+    }
+    span {
+        margin-left: 280px;
     }
 </style>
