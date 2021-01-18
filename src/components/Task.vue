@@ -1,7 +1,7 @@
 <template>
-    <div class="task" @click="testColor()" :style="[{backgroundColor: myColor}]">
-        {{ taskMessage }}
-        <span>X</span>
+    <div class="task" @click="testColor()" :style="[{backgroundColor: myColor, textDecorationLine: textMode}]">
+        {{taskMessage}}
+        <button @click="removeTask">X</button>
     </div>
 </template>
 
@@ -15,6 +15,7 @@ export default {
     data() {
         return {
             myColor: 'red',
+            textMode: 'none'
         }
     },
     methods: {
@@ -24,13 +25,18 @@ export default {
             if(this.myColor == 'red') {
                 this.myColor = 'aqua';
                 verify++;
+                this.textMode = 'line-through';
             }
             else {
                 this.myColor = 'red';
-                verify--;
+                if(verify >= 0) verify--;
+                this.textMode = 'none';
             }
             this.$emit('sendValue', verify);
         },
+        removeTask() {
+            this.$emit('removingTask', this.taskMessage);
+        }
     }
 }
 </script>

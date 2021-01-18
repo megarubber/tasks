@@ -1,7 +1,7 @@
 <template>
     <div class="bar">
         <div class="progress-bar" :style="[{width: count() + '%'}]"></div>
-        <h1>{{count()}}%</h1>
+        <h1>{{count().toFixed(0)}}%</h1>
     </div>
 </template>
 

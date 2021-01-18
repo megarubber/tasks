@@ -1,11 +1,14 @@
 <template>
 	<div id="app">
 		<h1>Tasks</h1>
-		<Bar :percentageWidth="repeatTime" :difference="counter"/>
+		<button @click="outroTeste()">a</button>
+		<Bar :percentageWidth="logs.length" :difference="counter"/>
 		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
 		<span class="blocks">
-			<span v-for="i in repeatTime" :key="i">
-				<Task @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
+			<span v-for="i in logs.length" :key="i">
+				<span v-if="selectedTask != logs[i-1]">
+					<Task @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
+				</span>
 			</span>
 		</span>
 	</div>
@@ -22,11 +25,24 @@ export default {
 		return {
 			repeatTime: 0,
 			logs: [],
-			counter: 0
+			counter: 0,
+			selectedTask: ''
 		}
 	},
 	methods: {
-		test() {
+		resetValues() {
+			let i;
+			for(i = 0; i < this.logs.length; i++) {
+				if(this.logs[i] == this.selectedTask) {
+					this.logs.splice(i,1);
+				}
+			}
+			this.selectedTask = '';
+			if(this.counter > 0) this.counter--;
+			else this.counter = 0;
+			// console.log(this.selectedTask);
+		},
+		outroTeste() {
 			console.log(this.counter);
 		}
 	}
