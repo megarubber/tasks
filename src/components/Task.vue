@@ -1,9 +1,9 @@
 <template>
     <div class="all-task">
+        <button @click="removeTask" :style="[{backgroundColor: myColor}]">X</button>
         <div class="task" @click="testColor()" :style="[{backgroundColor: myColor, textDecorationLine: textMode}]">
             {{taskMessage}}
         </div>
-        <button @click="removeTask">X</button>
     </div>
 </template>
 
@@ -56,7 +56,17 @@ export default {
         font-size: 20px;
         padding: 25px;
     }
+
     span {
         margin-left: 280px;
+    }
+
+    button {
+        position:absolute;
+        padding: 10px 20px;
+        margin-left: 15px;
+        border: none;
+        border-radius: 15px;
+        font-weight: bold;
     }
 </style>
