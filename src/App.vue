@@ -1,12 +1,52 @@
 <template>
 	<div id="app">
 		<h1>Tasks</h1>
+		<!-- <button @click="outroTeste()">a</button> -->
+		<Bar :percentageWidth="logs.length" :difference="counter"/>
+		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
+		<span class="blocks">
+			<span v-for="i in logs.length" :key="i">
+				<span v-if="logs[i] != logs[i-1]">
+					<Task @stoppingCount="option = $event" @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
+				</span>
+			</span>
+		</span>
 	</div>
 </template>
 
 <script>
-export default {
+import Bar from '@/components/Bar.vue'
+import InputBar from '@/components/InputBar.vue'
+import Task from '@/components/Task.vue'
 
+export default {
+	components: { Bar, InputBar, Task },
+	data() {
+		return {
+			repeatTime: 0,
+			logs: [],
+			counter: 0,
+			selectedTask: '',
+			option: false
+		}
+	},
+	methods: {
+		resetValues() {
+			let i;
+			for(i = 0; i < this.logs.length; i++) {
+				if(this.logs[i] == this.selectedTask) {
+					this.logs.splice(i,1);
+				}
+			}
+			this.selectedTask = '';
+			if(this.counter > 0 && !this.option) this.counter--;
+			else this.counter = 0;
+			// console.log(this.selectedTask);
+		},
+		outroTeste() {
+			console.log(this.counter);
+		}
+	}
 }
 </script>
 
@@ -14,7 +54,7 @@ export default {
 	body {
 		font-family: 'Fredoka One', cursive;
 		background: linear-gradient(to right, rgb(56, 184, 17), rgb(58, 115, 82));
-		color: #FFF;
+		color: black;
 	}
 
 	#app {
@@ -24,6 +64,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		height: 100vh;
+		width: 100%;
 	}
 
 	#app h1 {
@@ -31,4 +72,13 @@ export default {
 		font-weight: 300;
 		font-size: 3rem;
 	}
+
+	.blocks {
+		display: flex !important;
+		flex-direction: row !important;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+
 </style>
