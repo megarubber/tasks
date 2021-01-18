@@ -7,7 +7,6 @@
 
 <script>
 
-import eventBus from '@/eventBus'
 export default {
     props: {
         percentageWidth: Number,

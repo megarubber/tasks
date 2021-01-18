@@ -7,7 +7,6 @@
 
 <script>
 
-import eventBus from '@/eventBus'
 export default {
     props: {
         text: Array

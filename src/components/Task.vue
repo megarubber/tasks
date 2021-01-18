@@ -1,13 +1,14 @@
 <template>
-    <div class="task" @click="testColor()" :style="[{backgroundColor: myColor, textDecorationLine: textMode}]">
-        {{taskMessage}}
+    <div class="all-task">
+        <div class="task" @click="testColor()" :style="[{backgroundColor: myColor, textDecorationLine: textMode}]">
+            {{taskMessage}}
+        </div>
         <button @click="removeTask">X</button>
     </div>
 </template>
 
 <script>
 
-import eventBus from '@/eventBus'
 export default {
     props: {
         taskMessage: String,
@@ -15,7 +16,8 @@ export default {
     data() {
         return {
             myColor: 'red',
-            textMode: 'none'
+            textMode: 'none',
+            option: false,
         }
     },
     methods: {
@@ -26,13 +28,16 @@ export default {
                 this.myColor = 'aqua';
                 verify++;
                 this.textMode = 'line-through';
+                this.option = false;
             }
             else {
                 this.myColor = 'red';
-                if(verify >= 0) verify--;
+                verify--;
                 this.textMode = 'none';
+                this.option = true;
             }
             this.$emit('sendValue', verify);
+            this.$emit('stoppingCount', this.option);
         },
         removeTask() {
             this.$emit('removingTask', this.taskMessage);

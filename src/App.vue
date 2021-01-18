@@ -1,13 +1,13 @@
 <template>
 	<div id="app">
 		<h1>Tasks</h1>
-		<button @click="outroTeste()">a</button>
+		<!-- <button @click="outroTeste()">a</button> -->
 		<Bar :percentageWidth="logs.length" :difference="counter"/>
 		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
 		<span class="blocks">
 			<span v-for="i in logs.length" :key="i">
-				<span v-if="selectedTask != logs[i-1]">
-					<Task @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
+				<span v-if="logs[i] != logs[i-1]">
+					<Task @stoppingCount="option = $event" @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
 				</span>
 			</span>
 		</span>
@@ -26,7 +26,8 @@ export default {
 			repeatTime: 0,
 			logs: [],
 			counter: 0,
-			selectedTask: ''
+			selectedTask: '',
+			option: false
 		}
 	},
 	methods: {
@@ -38,7 +39,7 @@ export default {
 				}
 			}
 			this.selectedTask = '';
-			if(this.counter > 0) this.counter--;
+			if(this.counter > 0 && !this.option) this.counter--;
 			else this.counter = 0;
 			// console.log(this.selectedTask);
 		},
