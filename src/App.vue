@@ -44,6 +44,27 @@ export default {
 		toogleTaskState(i) {
 			this.tasks[i].pending = !this.tasks[i].pending;
 		}
+	},
+	watch: {
+		tasks: {
+			deep: true,
+			handler() {
+				localStorage.setItem('tasks', JSON.stringify(this.tasks));
+			}
+		}
+	},
+	created() {
+		const json = localStorage.getItem('tasks');
+		const array = JSON.parse(json);
+		/*
+		if(Array.isArray(array)) {
+			this.tasks = array;
+		}
+		else {
+			this.tasks = [];
+		}
+		*/
+		this.tasks = Array.isArray(array) ? array : [];
 	}
 }
 </script>
