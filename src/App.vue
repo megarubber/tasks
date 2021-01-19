@@ -2,7 +2,7 @@
 	<div id="app">
 		<h1>Tasks</h1>
 		<NewTask @taskAdded="addTask"/>
-		<TaskGrid :tasks="tasks" />
+		<TaskGrid @taskDeleted="deleteTask" @taskStateChanged="toogleTaskState" :tasks="tasks" />
 	</div>
 </template>
 
@@ -15,10 +15,7 @@ export default {
 	components: {TaskGrid, NewTask},
 	data() {
 		return {
-			tasks: [
-				{name: 'Lavar a louça', pending: false},
-				{name: 'Comprar a blusa', pending: true}
-			]
+			tasks: []
 		}
 	},
 	methods: {
@@ -31,6 +28,12 @@ export default {
 					pending: task.pending || true
 				});
 			}
+		},
+		deleteTask(i) {
+			this.tasks.splice(i, 1);
+		},
+		toogleTaskState(i) {
+			this.task[i].pending = !this.task[i].pending;
 		}
 	}
 }
