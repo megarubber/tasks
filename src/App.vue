@@ -6,10 +6,9 @@
 		<InputBar @sizeMyTasks="repeatTime = $event" @setMessage="logs.push($event)"/>
 		<span class="blocks">
 			<span v-for="i in logs.length" :key="i">
-				<span v-if="logs[i] != logs[i-1]">
-					<Task @stoppingCount="option = $event" @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
-				</span>
+				<Task @stoppingCount="option = $event" @removingTask="selectedTask = $event, resetValues()" @sendValue="counter += $event" :taskMessage="logs[i-1]"/>
 			</span>
+			<p v-if="logs.length <= 0" class="warning-text">You're up to date.</p>
 		</span>
 	</div>
 </template>
@@ -43,10 +42,7 @@ export default {
 			else this.counter = 0;
 			// console.log(this.selectedTask);
 		},
-		outroTeste() {
-			console.log(this.counter);
-		}
-	}
+	},
 }
 </script>
 
@@ -76,9 +72,13 @@ export default {
 	.blocks {
 		display: flex !important;
 		flex-direction: row !important;
+		flex-wrap: wrap;
 		width: 100%;
 		justify-content: center;
 		align-items: center;
 	}
 
+	.warning-text {
+		font-size: 2.5rem;
+	}
 </style>
