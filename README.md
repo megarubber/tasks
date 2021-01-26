@@ -4,7 +4,7 @@
 This is a simple project using Vue CLI (Vue.js version 2). I put 2 versions of project: the first called _"development-v1"_ (version made by me without copying the original) and the second called _"course-project"_ (original version).
 
 Basically, the project works like this:
-To create a task, type in the entry bar and add by pressing the button beside. This, you will create a task, which can be removed by pressing the close button or on the task to mark it.
+To create a task, type in the entry bar and add by pressing the button beside. This, you will create a task, which can be removed by pressing the Close button or be checked, when clicking on the task.
 
 To run this project, you need Vue CLI and Node.js.
 
