@@ -13,7 +13,7 @@ To run this project, you need Vue CLI and Node.js.
 git clone (HTTPS or SSH)
 cd tarefas
 npm install
-npm run serve
+npm run dev
 ```
 
 ### Customize configuration
