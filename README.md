@@ -18,7 +18,3 @@ npm run dev
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-Both projects are with different CSS styles, so don't think it's "strange".
-
-#### The 2 projects don't have the function of being a "decent" thing, just to learn :) ####
